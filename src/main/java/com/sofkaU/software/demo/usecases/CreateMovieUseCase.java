@@ -29,7 +29,7 @@ public class CreateMovieUseCase {
                 .switchIfEmpty(Mono.error(() -> new Throwable("Some fields are empty")));
     }
 
-    private Mono<MovieDTO> postMovieDto(MovieDTO movieDTO){
+    public Mono<MovieDTO> postMovie(MovieDTO movieDTO){
         return validateMovieDto(movieDTO)
                 .flatMap(moviedto -> movieRepo.save(mapper.toMovieEntity(moviedto)))
                 .map(mapper::toMovieDto);
