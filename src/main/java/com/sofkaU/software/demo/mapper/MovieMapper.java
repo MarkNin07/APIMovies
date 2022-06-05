@@ -3,7 +3,6 @@ package com.sofkaU.software.demo.mapper;
 import com.sofkaU.software.demo.collection.Movie;
 import com.sofkaU.software.demo.dto.MovieDTO;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
