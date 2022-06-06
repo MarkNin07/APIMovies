@@ -2,6 +2,7 @@ package com.sofkaU.software.demo.controller;
 
 import com.sofkaU.software.demo.dto.MovieDTO;
 import com.sofkaU.software.demo.usecases.CreateMovieUseCase;
+import com.sofkaU.software.demo.usecases.DeleteMovieUseCase;
 import com.sofkaU.software.demo.usecases.GetMoviesUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +36,14 @@ public class MovieController {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(movieDTO))
                         .onErrorResume(e -> ServerResponse.status(HttpStatus.BAD_REQUEST).build()));
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> deleteMovie(DeleteMovieUseCase deleteMovieUseCase){
+        return route(DELETE("/delete/movie/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> deleteMovieUseCase.deleteMovie(request.pathVariable("id"))
+                        .flatMap((del) -> ServerResponse.status(HttpStatus.ACCEPTED).build())
+                        .onErrorResume(e -> ServerResponse.status(HttpStatus.NOT_FOUND).build()));
     }
 
 }

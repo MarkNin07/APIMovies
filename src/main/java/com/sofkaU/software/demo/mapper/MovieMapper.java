@@ -10,7 +10,9 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 @EnableWebFlux
 public class MovieMapper {
 
+
     private final ModelMapper mapper;
+
 
     public MovieMapper(ModelMapper mapper) {
         this.mapper = mapper;
@@ -23,7 +25,6 @@ public class MovieMapper {
     public Movie toMovieEntity (MovieDTO movieDTO){
         return mapper.map(movieDTO, Movie.class);
     }
-
 
 
 }
